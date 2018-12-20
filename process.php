@@ -20,11 +20,11 @@ $etwo = '';
 
 //POST method
 if (isset($_POST['save'])){
-    $word = $_POST['word'];
-    $meaning = $_POST['meaning'];
-    $similar = $_POST['similar'];
-    $eone = $_POST['eone'];
-    $etwo = $_POST['etwo'];
+    $word = mysqli_real_escape_string($mysqli, $_POST['word']);
+    $meaning = mysqli_real_escape_string($mysqli, $_POST['meaning']);
+    $similar = mysqli_real_escape_string($mysqli, $_POST['similar']);
+    $eone = mysqli_real_escape_string($mysqli, $_POST['eone']);
+    $etwo = mysqli_real_escape_string($mysqli, $_POST['etwo']);
 
     if (empty($word) && empty($meaning) && empty($similar) && empty($eone) && empty($etwo)) {
         $_SESSION['message'] = "No record has been saved!";
@@ -71,11 +71,11 @@ if (isset($_GET['edit'])){
 //UPDATE method
 if (isset($_POST['update'])){
     $id = $_POST['id'];
-    $word = $_POST['word'];
-    $meaning = $_POST['meaning'];
-    $similar = $_POST['similar'];
-    $eone = $_POST['eone'];
-    $etwo = $_POST['etwo'];
+    $word = mysqli_real_escape_string($mysqli, $_POST['word']);
+    $meaning = mysqli_real_escape_string($mysqli, $_POST['meaning']);
+    $similar = mysqli_real_escape_string($mysqli, $_POST['similar']);
+    $eone = mysqli_real_escape_string($mysqli, $_POST['eone']);
+    $etwo = mysqli_real_escape_string($mysqli, $_POST['etwo']);
 
     if (empty($word) && empty($meaning) && empty($similar) && empty($eone) && empty($etwo)) {
         $_SESSION['message'] = "No record has been saved!";

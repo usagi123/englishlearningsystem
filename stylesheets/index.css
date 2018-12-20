@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Sarabun');
 
 .custom-nav {
   padding-top: 5px;
@@ -13,7 +13,7 @@
   line-height: 1.8;
   letter-spacing: 1px;
   border-radius: 0;
-  font-family: Lato, sans-serif;
+  font-family: 'Sarabun', sans-serif;
   font-weight: 600;
   -webkit-transition: all 0.6s ease-out;
   -moz-transition: all 0.6s ease-out;
@@ -119,7 +119,7 @@ a:hover:after, a:focus:after {
   height: 30vh;
   background-color: black;
   color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Sarabun', sans-serif;
   background: linear-gradient(
                    rgba(20,20,20, .5), 
                    rgba(20,20,20, .5)),
@@ -133,7 +133,7 @@ a:hover:after, a:focus:after {
 
 .banana {
   color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Sarabun', sans-serif;
   background: linear-gradient(
                    rgba(20,20,20, .5), 
                    rgba(20,20,20, .5));
@@ -159,7 +159,7 @@ a:hover:after, a:focus:after {
   font-size: 2rem;
   text-align: left;
   color: #4ec8ff;
-  font-family: Lato;
+  font-family: 'Sarabun', sans-serif;
 }
 
 .bg-primary {
@@ -171,7 +171,7 @@ a:hover:after, a:focus:after {
 }
 
 .bg-dark h5 {
-  font-family: Lato, sans-serif;
+  font-family: 'Sarabun', sans-serif;
   color: white;
   text-align: center;
   padding-top: 10px;
@@ -191,16 +191,16 @@ a:hover:after, a:focus:after {
   padding-top: 10px;
 }
 
-.left-title {
-  padding-top: 30px;
-  padding-bottom: 10px;
-  border-right: #cdcdcd thin solid;
-}
-
 .borderBottom {
   padding-top: 20px;
   border-bottom: #cdcdcd thin solid;
   width: 100%;
+}
+
+.left-title {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  border-right: #cdcdcd thin solid;
 }
 
 .left-title h1 {
@@ -208,14 +208,14 @@ a:hover:after, a:focus:after {
   font-size: 2rem;
   text-align: left;
   color: #4ec8ff;
-  font-family: Lato, sans-serif;
+  font-family: 'Sarabun', sans-serif;
   padding-bottom: 10px;
 }
 
 .left-title p {
   text-align: left;
   color: #949494;
-  font: Lato, sans-serif;
+  font: 'Fira Sans', sans-serif;
   font-size: 16px;
 }
 
@@ -223,7 +223,7 @@ a:hover:after, a:focus:after {
   font-weight: 700;
   font-size: 1.4rem;
   text-align: left;
-  font-family: Lato, sans-serif;
+  font-family: 'Sarabun', sans-serif;
   color: #4ec8ff;
 }
 
@@ -236,7 +236,7 @@ a:hover:after, a:focus:after {
   font-size: 2rem;
   text-align: left;
   color: #4ec8ff;
-  font-family: Lato, sans-serif;
+  font-family: 'Sarabun', sans-serif;
   padding-bottom: 10px;
   padding-left: 30px;
 }
@@ -245,14 +245,14 @@ a:hover:after, a:focus:after {
   font-weight: 700;
   font-size: 1.4rem;
   text-align: left;
-  font-family: Lato, sans-serif;
+  font-family: 'Sarabun', sans-serif;
   color: #4ec8ff;
 }
 
 .right-title p {
   text-align: left;
   color: #949494;
-  font: Lato, sans-serif;
+  font: 'Fira Sans', sans-serif;
   font-size: 16px;
 }
 
@@ -308,8 +308,4 @@ a:hover:after, a:focus:after {
 
 .right-button {
   text-align: right;
-}
-
-.left-button {
-  text-align: left;
 }

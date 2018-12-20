@@ -31,13 +31,13 @@
                 }
             };
         </script>
-        <title>Lecturers Management System - LMS</title>
+        <title>English Learning System</title>
     </head>
     <body>
         <div class="aloha">
             <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="myNav">
                 <div class="container custom-nav">
-                    <a href="index.php" class="navbar-brand">Lecturers Management System</a>
+                    <a href="index.php" class="navbar-brand">English Learning System</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar7">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -99,7 +99,7 @@
                 </div>
             <?php endif ?>
             <?php
-                $mysqli = new mysqli($hostname, $username, $password, $dbname, $port, $socket) or die(mysqli_error($mysqli));
+                $mysqli = new mysqli($hostname, $username, $password, $dbname, $port) or die(mysqli_error($mysqli));
                 $result = $mysqli->query("SELECT * FROM questions") or die($mysqli->error);
                 //pre_r($result);
             ?>
@@ -118,7 +118,7 @@
                 <div class="right-button">
                     <!-- <div class="btn-group" role="group" aria-label="Button group with nested dropdown"> -->
                         <a href="addnew.php" class="btn btn-outline-primary">Add new question</a>
-                        <div class="btn-group" role="group">
+                        <!-- <div class="btn-group" role="group">
                             <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 CSV export
                             </button>
@@ -126,7 +126,7 @@
                                 <button class="dropdown-item" type="submit" name="export-to-local">Download</button>
                                 <button class="dropdown-item" type="submit" name="export-to-cloud">Export to Cloud Storage</button>
                             </div>
-                        </div>
+                        </div> -->
                     <!-- </div> -->
                 </div>
             </form>
@@ -153,9 +153,9 @@
                             <td><?php echo $row['etwo']; ?></td>
                             <td>
                                 <a href="addnew.php?edit=<?php echo $row['id']; ?>"
-                                class="btn btn-outline-info continue-reading">Edit</a>
+                                class="btn btn-outline-info btn-block continue-reading">Edit</a>
                                 <a href="process.php?delete=<?php echo $row['id']; ?>"
-                                class="btn btn-outline-danger">Delete</a>
+                                class="btn btn-outline-danger btn-block">Delete</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>    

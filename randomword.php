@@ -30,13 +30,13 @@
                 }
             };
         </script>
-        <title>Lecturers Management System - LMS</title>
+        <title>English Learning System</title>
     </head>
     <body>
         <div class="aloha">
             <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="myNav">
                 <div class="container custom-nav">
-                    <a href="index.php" class="navbar-brand">Lecturers Management System</a>
+                    <a href="index.php" class="navbar-brand">English Learning System</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar7">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -98,20 +98,32 @@
                 </div>
             <?php endif ?>
             <?php
-                $mysqli = new mysqli($hostname, $username, $password, $dbname, $port, $socket) or die(mysqli_error($mysqli));
+                $mysqli = new mysqli($hostname, $username, $password, $dbname, $port) or die(mysqli_error($mysqli));
                 $result = $mysqli->query("SELECT * FROM questions order by rand() limit 1") or die($mysqli->error);
                 //pre_r($result);
             ?>
             <div class="extra-padding-bottom-10px"></div>
 
             <?php while ($row = $result->fetch_assoc()): ?>
-                <div class="container">
-                    <h3>Word: <?php echo $row['word']?></h3> 
-                    <h3>Meaning: <?php echo $row['meaning']?></h3>
-                    <h3>Similar word: <?php echo $row['similar']?></h3>
-                    <h3>Example 1: <?php echo $row['eone']?></h3> 
-                    <h3>Example 2: <?php echo $row['etwo']?></h3> 
+            <div class="row text-center transition-from-header">
+                <div class="col-md-12 cliente right-title"> 
+                    <h3>Word: <span style="color: #000000"><?php echo $row['word']?></span> </h3> 
+                    <h3>Meaning: <span style="color: #000000"><?php echo $row['meaning']?></span></h3>
+                    <h3>Similar word: <span style="color: #000000"><?php echo $row['similar']?></span></h3>
+                    <h3>Example 1: <span style="color: #000000"><?php echo $row['eone']?></span></h3> 
+                    <h3>Example 2: <span style="color: #000000"><?php echo $row['etwo']?></span></h3> 
                 </div>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button value="Refresh Page" onClick="window.location.reload()" type="button" class="btn btn-outline-info continue-reading">Learn new word</button>
+        </div>
+        
+        
+        <div class="extra-padding-bottom-10px"></div>
+
+                
                 
                 <!-- <div class="row justify-content-center">
                     <table class="table">

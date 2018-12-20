@@ -5,6 +5,7 @@
 
     if(isset($_POST['login'])) {
         $mysqli = new mysqli($hostname, $username, $password, $dbname, $port) or die(mysqli_error($mysqli));
+
         //To avoid sql injection
         $username = strip_tags($_POST['username']);
         $password = strip_tags($_POST['password']);
@@ -70,7 +71,7 @@
                 }
             };
         </script>
-        <title>Lecturers Management System - LMS</title>
+        <title>English Learning System</title>
     </head>
     <body class="bg-dark" style="background: url(https://i.imgur.com/6WSGUoc.png) no-repeat center center fixed;">
         <?php if (isset($_SESSION['fail'])): ?>

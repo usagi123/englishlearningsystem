@@ -32,14 +32,14 @@
           }
       };
     </script>
-    <title>Lecturers Management System - LMS</title>
+    <title>English Learning System</title>
   </head>
   <body>
 
     <div class="aloha">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="myNav">
             <div class="container custom-nav">
-                <a href="index.php" class="navbar-brand">Lecturers Management System</a>
+                <a href="index.php" class="navbar-brand">English Learning System</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar7">
                     <span class="navbar-toggler-icon"></span>
                 </button>

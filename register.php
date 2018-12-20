@@ -1,11 +1,10 @@
 <?php
     session_start();
-    $_SESSION['message'] = '';
-    $username = '';
-    $password = '';
-    $email = '';
-    $mysqli = new mysqli("localhost", "root", "root", "crud");
 
+    include 'dbconfig.php';
+    
+    $mysqli = new mysqli($hostname, $username, $password, $dbname, $port) or die(mysqli_error($mysqli));
+    
     //the form has been submitted with post
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
@@ -28,16 +27,18 @@
             $sql = "INSERT INTO users (username, password, email, level) "
                     . "VALUES ('$username', '$hashedpw', '$email', '0')";
             
-            //if the query is successsful, redirect to welcome.php page, done!
+            //if the query is successsful
             if ($mysqli->query($sql) === true){
                 header("location: login.php");
             }
             else {
+                $_SESSION['msg_type'] = "danger";
                 $_SESSION['message'] = 'User could not be added to the database!';
             }
             $mysqli->close();  
         }
         else {
+            $_SESSION['msg_type'] = "warning";
             $_SESSION['message'] = 'Two passwords do not match!';
         }
     }
@@ -63,14 +64,14 @@
                 }
             };
         </script>
-        <title>Lecturers Management System - LMS</title>
+        <title>English Learning System</title>
     </head>
     <body class="bg-dark" style="background: url(https://i.imgur.com/6WSGUoc.png) no-repeat center center fixed;">
-        <?php if (isset($_SESSION['fail'])): ?>
-            <div class="alert alert-danger alert-dismissible fade show">
+        <?php if (isset($_SESSION['message'])): ?>
+            <div class="alert alert-<?=$_SESSION['msg_type']?> alert-dismissible fade show">
                 <?php 
-                    echo $_SESSION['fail']; 
-                    unset($_SESSION['fail']);
+                    echo $_SESSION['message']; 
+                    unset($_SESSION['message']);
                 ?>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

@@ -90,7 +90,7 @@
         <div class="container py-5">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="text-center text-white mb-4">LMS Login</h2>
+                    <h2 class="text-center text-white mb-4">English Learning System - ELS</h2>
                     <div class="row">
                         <div class="col-md-6 mx-auto">
                             <!-- form card login -->

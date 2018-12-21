@@ -5,19 +5,21 @@
     
     $mysqli = new mysqli($hostname, $username, $password, $dbname, $port) or die(mysqli_error($mysqli));
     
+    //set all the post variables
+    $username = $mysqli->real_escape_string($_POST['username']);
+    $email = $mysqli->real_escape_string($_POST['email']);
+    $password = $mysqli->real_escape_string($_POST['password']);
+
     //the form has been submitted with post
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
+        //TODO: check for existed username and email
+
         //two passwords are equal to each other
         if ($_POST['password'] == $_POST['confirmpassword']) {
             
-            //set all the post variables
-            $username = $mysqli->real_escape_string($_POST['username']);
-            $email = $mysqli->real_escape_string($_POST['email']);
-            $password = $mysqli->real_escape_string($_POST['password']);
-            $options = [
-                'cost' => 12
-            ];
+            //salt 12
+            $options = ['cost' => 12];
             $hashedpw = password_hash($password, PASSWORD_BCRYPT, $options);
             
             //set session variables

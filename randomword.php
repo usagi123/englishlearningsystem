@@ -7,7 +7,7 @@
     if(!isset($_SESSION['loginid'])){
         header("Location: login.php");
     } 
-    $pageName = "listing.php"
+    $pageName = "listing.php";
 ?>
 
 <!doctype html>
@@ -85,26 +85,14 @@
             
         <div class="extra-padding-bottom-10px"></div>
         <div class="container">
-            <?php require_once 'process.php'; ?>   
-            <?php if (isset($_SESSION['message'])): ?>
-                <div class="alert alert-<?=$_SESSION['msg_type']?> alert-dismissible fade show">
-                    <?php 
-                        echo $_SESSION['message']; 
-                        unset($_SESSION['message']);
-                    ?>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            <?php endif ?>
             <?php
                 $mysqli = new mysqli($hostname, $username, $password, $dbname, $port) or die(mysqli_error($mysqli));
                 $result = $mysqli->query("SELECT * FROM questions order by rand() limit 1") or die($mysqli->error);
-                //pre_r($result);
             ?>
             <div class="extra-padding-bottom-10px"></div>
 
             <?php while ($row = $result->fetch_assoc()): ?>
+                <?php $word = $row['word']; ?>
             <div class="row text-center transition-from-header">
                 <div class="col-md-12 cliente right-title"> 
                     <h3>Word: <span style="color: #000000"><?php echo $row['word']?></span> </h3> 
@@ -114,42 +102,72 @@
                     <h3>Example 2: <span style="color: #000000"><?php echo $row['etwo']?></span></h3> 
                 </div>
             </div>
-        </div>
-
-        <div class="text-center">
-            <button value="Refresh Page" onClick="window.location.reload()" type="button" class="btn btn-outline-info continue-reading">Learn new word</button>
-        </div>
-        
-        
-        <div class="extra-padding-bottom-10px"></div>
-
-                
-                
-                <!-- <div class="row justify-content-center">
-                    <table class="table">
-                        <tr>
-                            <th>Word:</th>
-                            <th><?php echo $row['word']?></th>
-                        </tr>
-                        <tr>
-                            <th>Meaning:</th>
-                            <th><?php echo $row['meaning']?></th>
-                        </tr>
-                        <tr>
-                            <th>Similar word:</th>
-                            <th><?php echo $row['similar']?></th>
-                        </tr>
-                        <tr>
-                            <th>Example 1:</th>
-                            <th><?php echo $row['eone']?></th>
-                        </tr>
-                        <tr>
-                            <th>Example 2:</th>
-                            <th><?php echo $row['etwo']?></th>
-                        </tr>
-                    </table>
-                </div> -->
             <?php endwhile; ?>
+
+            <div class="extra-padding-bottom-10px"></div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-5">
+                        <input type="text" class="form-control" name="speaking" id="transcript" placeholder="Check your pronounciation" />
+                    </div>
+                    <div class="col-2">
+                        <button value="Start talking" onClick="startDictation()" type="button" class="btn btn-outline-info continue-reading">Record</button>
+                    </div>
+                    <div class="col">
+                    </div>
+                </div>
+            </div>
+            <?php 
+                if (isset($_POST['index'])) {
+                    header("Location: index.php");
+                }
+            ?>
+
+            <?php 
+                if(isset($_POST['submit'])):
+                    if($speaking == $row['word']): ?>
+                        <script>
+                            alert("Your pronounciation is correct");
+                        </script>
+            <?php endif; 
+                endif;
+            ?>
         </div>
+            
+        <div class="extra-padding-bottom-10px"></div>
+        <div class="extra-padding-bottom-10px"></div>
+            <div class="text-center">
+                <button value="Refresh Page" onClick="window.location.reload()" type="button" class="btn btn-outline-info continue-reading">Learn new word</button>
+            </div>
+            
+        </div>
+
+        <script>
+            function startDictation() {
+                if (window.hasOwnProperty('webkitSpeechRecognition')) {
+            
+                    var recognition = new webkitSpeechRecognition();
+            
+                    recognition.continuous = false;
+                    recognition.interimResults = false;
+            
+                    recognition.lang = "en-US";
+                    recognition.start();
+            
+                    recognition.onresult = function(e) {
+                    document.getElementById('transcript').value
+                                            = e.results[0][0].transcript;
+                    recognition.stop();
+                    // document.getElementById('result').submit();
+                    };
+            
+                    recognition.onerror = function(e) {
+                    recognition.stop();
+                    }
+            
+                }
+            }
+        </script>
 
 <?php include('includes/footer.php'); ?>    

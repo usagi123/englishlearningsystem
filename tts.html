@@ -1,17 +1,18 @@
 <!-- CSS Styles -->
 <style>
-    .speech {border: 1px solid #DDD; width: 300px; padding: 0; margin: 0}
-    .speech input {border: 0; width: 240px; display: inline-block; height: 30px;}
-    .speech img {float: right; width: 40px }
-  </style>
+  .speech {border: 1px solid #DDD; width: 300px; padding: 0; margin: 0}
+  .speech input {border: 0; width: 240px; display: inline-block; height: 30px;}
+  .speech img {float: right; width: 30px }
+</style>
   
   <!-- Search Form -->
-  <form id="labnol" method="get" action="">
-    <div class="speech">
-      <input type="text" name="q" id="transcript" placeholder="Speak" />
-      <img onclick="startDictation()" src="https//i.imgur.com/cHidSVu.gif" />
-    </div>
-  </form>
+  <div class="speech">
+    <input type="text" name="q" id="transcript" placeholder="Speak" />
+    <img onclick="startDictation()" src="https://i.imgur.com/MqWh28x.png" />
+    <script>
+      alert("Your pronounciation is correct");
+    </script>
+  </div>
   
   <!-- HTML5 Speech Recognition API -->
   <script>
@@ -31,7 +32,7 @@
           document.getElementById('transcript').value
                                    = e.results[0][0].transcript;
           recognition.stop();
-          document.getElementById('labnol').submit();
+          // document.getElementById('result').submit();
         };
   
         recognition.onerror = function(e) {

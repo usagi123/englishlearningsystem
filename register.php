@@ -17,7 +17,6 @@
 
         //two passwords are equal to each other
         if ($_POST['password'] == $_POST['confirmpassword']) {
-            
             //salt 12
             $options = ['cost' => 12];
             $hashedpw = password_hash($password, PASSWORD_BCRYPT, $options);

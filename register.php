@@ -114,8 +114,9 @@
                                             <input type="password" class="form-control form-control-lg rounded-0" name="confirmpassword" id="pwd2" required="" autocomplete="new-password">
                                             <div class="invalid-feedback">Enter your password too!</div>
                                         </div>
-                                        <button type="submit" name="login" class="btn btn-success btn-lg float-right" id="btnLogin">Register</button>
+                                        <button type="submit" name="register" class="btn btn-success btn-lg float-right" id="btnLogin">Register</button>
                                     </form>
+                                    <a href="login.php">Already have account?</a>
                                 </div>
                                 <!--/card-block-->
                             </div>

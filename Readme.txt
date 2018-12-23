@@ -24,5 +24,5 @@ What I had done:
 - Login system that can prevent sql injection
 - CRUD words
 - A voice regconition for users to practice their pronounciation
-- SSL
+- SSL by adding my ELB to CNAME on CloudFlare. I choose CF as I already added their name servers on my registar.
 

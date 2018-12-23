@@ -86,7 +86,7 @@
         <div class="container">
             <?php
                 $mysqli = new mysqli($hostname, $username, $password, $dbname, $port) or die(mysqli_error($mysqli));
-                $sqlcompare = "SELECT * FROM questions order by rand() limit 1";
+                $sqlcompare = "SELECT * FROM questions ORDER BY rand() limit 1";
                 $aloha = mysqli_query($mysqli, $sqlcompare);
 
                 $row = mysqli_fetch_assoc($aloha);
@@ -98,7 +98,7 @@
                     $sqlcheck = "SELECT * FROM questions WHERE word LIKE '%".$input."%' AND id = $pos";
                     $sqlresult = mysqli_query($mysqli, $sqlcheck);
                     if (mysqli_num_rows($sqlresult) > 0) {
-                        header("Location: congrat.php");
+                        header("Location: sad.php");
                     } else {
                         header("Location: congrat.php");
                     }

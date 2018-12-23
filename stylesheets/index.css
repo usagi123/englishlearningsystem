@@ -116,14 +116,14 @@ a:hover:after, a:focus:after {
 }
 
 .aloha {
-  height: 30vh;
+  height: 50vh;
   background-color: black;
   color: #fff;
   font-family: 'Sarabun', sans-serif;
   background: linear-gradient(
                    rgba(20,20,20, .5), 
                    rgba(20,20,20, .5)),
-                   url(https://i.imgur.com/buRaakj.jpg);
+                   url(https://i.imgur.com/UaS5wUs.png?1);
   background-size: cover;
 }
 

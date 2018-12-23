@@ -87,12 +87,26 @@
         <div class="container">
             <?php
                 $mysqli = new mysqli($hostname, $username, $password, $dbname, $port) or die(mysqli_error($mysqli));
-                $result = $mysqli->query("SELECT * FROM questions order by rand() limit 1") or die($mysqli->error);
+                $sqlcompare = "SELECT * FROM questions order by rand() limit 1";
+                $aloha = mysqli_query($mysqli, $sqlcompare);
+
+                $row = mysqli_fetch_assoc($aloha);
+                $pos = $row['id'];
+                $fetchedword = $row['word'];
+
+                if (isset($_POST['compare'])) {
+                    $input = $mysqli->real_escape_string($_POST['input']); 
+                    $sqlcheck = "SELECT * FROM questions WHERE word LIKE '%".$input."%' AND id = $pos";
+                    $sqlresult = mysqli_query($mysqli, $sqlcheck);
+                    if (mysqli_num_rows($sqlresult) > 0) {
+                        header("Location: sad.php");
+                    } else {
+                        header("Location: congrat.php");
+                    }
+                }
             ?>
             <div class="extra-padding-bottom-10px"></div>
 
-            <?php while ($row = $result->fetch_assoc()): ?>
-                <?php $word = $row['word']; ?>
             <div class="row text-center transition-from-header">
                 <div class="col-md-12 cliente right-title"> 
                     <h3>Word: <span style="color: #000000"><?php echo $row['word']?></span> </h3> 
@@ -102,36 +116,26 @@
                     <h3>Example 2: <span style="color: #000000"><?php echo $row['etwo']?></span></h3> 
                 </div>
             </div>
-            <?php endwhile; ?>
 
             <div class="extra-padding-bottom-10px"></div>
 
             <div class="container">
-                <div class="row">
-                    <div class="col-5">
-                        <input type="text" class="form-control" name="speaking" id="transcript" placeholder="Check your pronounciation" />
+                <form method="POST">
+                    <div class="row">
+                        <div class="col-5">
+                            <input type="text" class="form-control" name="input" id="transcript" placeholder="Check your pronounciation" />
+                        </div>
+                        <div class="col-3">
+                            <button value="Start talking" onClick="startDictation()" type="button" class="btn btn-outline-info continue-reading">Record</button>
+                            <button type="submit" method="POST" class="btn btn-outline-info continue-reading" name="compare">Submit</button>
+                        </div>
+                        <div class="col">
+                        </div>
                     </div>
-                    <div class="col-2">
-                        <button value="Start talking" onClick="startDictation()" type="button" class="btn btn-outline-info continue-reading">Record</button>
-                    </div>
-                    <div class="col">
-                    </div>
-                </div>
+                </form>
             </div>
             <?php 
-                if (isset($_POST['index'])) {
-                    header("Location: index.php");
-                }
-            ?>
-
-            <?php 
-                if(isset($_POST['submit'])):
-                    if($speaking == $row['word']): ?>
-                        <script>
-                            alert("Your pronounciation is correct");
-                        </script>
-            <?php endif; 
-                endif;
+                
             ?>
         </div>
             

@@ -12,35 +12,51 @@
 
     //the form has been submitted with post
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        
         //TODO: check for existed username and email
-
-        //two passwords are equal to each other
-        if ($_POST['password'] == $_POST['confirmpassword']) {
-            //salt 12
-            $options = ['cost' => 12];
-            $hashedpw = password_hash($password, PASSWORD_BCRYPT, $options);
-            
-            //set session variables
-            $_SESSION['username'] = $username;
-
-            //insert user data into database
-            $sql = "INSERT INTO users (username, password, email, level) "
-                    . "VALUES ('$username', '$hashedpw', '$email', '0')";
-            
-            //if the query is successsful
-            if ($mysqli->query($sql) === true){
-                header("location: login.php");
-            }
-            else {
+        $checkUsernameSQL = "SELECT * FROM users WHERE username = '".$username."'";
+        $resultUsernameCheck = mysqli_query($mysqli, $checkUsernameSQL);
+        $checkEmailSQL = "SELECT * FROM users WHERE email = '".$email."'";
+        $resultEmailCheck = mysqli_query($mysqli, $checkEmailSQL);
+        if (isset($_POST['register'])) {
+            if (mysqli_num_rows($resultUsernameCheck) >= 1) {
                 $_SESSION['msg_type'] = "danger";
-                $_SESSION['message'] = 'User could not be added to the database!';
+                $_SESSION['message'] = 'Existed username in the database';
+                header("Location: register.php");
+            } else if (mysqli_num_rows($resultEmailCheck) >= 1) {
+                $_SESSION['msg_type'] = "danger";
+                $_SESSION['message'] = 'Existed email in the database';
+                header("Location: register.php");
             }
-            $mysqli->close();  
-        }
-        else {
-            $_SESSION['msg_type'] = "warning";
-            $_SESSION['message'] = 'Two passwords do not match!';
+            else {  // excecute insert query 
+                if ($_POST['password'] == $_POST['confirmpassword']) {
+                    //salt 12
+                    $options = ['cost' => 12];
+                    $hashedpw = password_hash($password, PASSWORD_BCRYPT, $options);
+                    
+                    //set session variables
+                    $_SESSION['username'] = $username;
+
+                    //insert user data into database
+                    $sql = "INSERT INTO users (username, password, email, level) "
+                            . "VALUES ('$username', '$hashedpw', '$email', '0')";
+                    
+                    //if the query is successsful
+                    if ($mysqli->query($sql) === true){
+                        header("location: login.php");
+                    }
+                    else {
+                        $_SESSION['msg_type'] = "danger";
+                        $_SESSION['message'] = 'User could not be added to the database!';
+                        header("Location: register.php");
+                    }
+                    $mysqli->close();  
+                }
+                else {
+                    $_SESSION['msg_type'] = "danger";
+                    $_SESSION['message'] = 'Two passwords do not match!';
+                    header("Location: register.php");
+                }
+            }
         }
     }
 ?>
@@ -68,6 +84,14 @@
         <title>English Learning System</title>
     </head>
     <body class="bg-dark" style="background: url(https://i.imgur.com/6WSGUoc.png) no-repeat center center fixed;">
+        <?php 
+            $result = $mysqli->query("SELECT * FROM questions order by rand() limit 1") or die($mysqli->error);
+            while ($row = $result->fetch_assoc()) {
+                echo $row['username'];
+                echo $row['email'];
+            }
+        ?>
+
         <?php if (isset($_SESSION['message'])): ?>
             <div class="alert alert-<?=$_SESSION['msg_type']?> alert-dismissible fade show">
                 <?php 

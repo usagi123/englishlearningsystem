@@ -117,7 +117,7 @@
                 </div> -->
                 <div class="right-button">
                     <!-- <div class="btn-group" role="group" aria-label="Button group with nested dropdown"> -->
-                        <a href="addnew.php" class="btn btn-outline-primary">Add new question</a>
+                        <a href="addnew.php" class="btn btn-outline-primary">Add new word</a>
                         <!-- <div class="btn-group" role="group">
                             <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 CSV export

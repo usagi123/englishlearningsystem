@@ -99,7 +99,7 @@
                     $sqlcheck = "SELECT * FROM questions WHERE word LIKE '%".$input."%' AND id = $pos";
                     $sqlresult = mysqli_query($mysqli, $sqlcheck);
                     if (mysqli_num_rows($sqlresult) > 0) {
-                        header("Location: sad.php");
+                        header("Location: congrat.php");
                     } else {
                         header("Location: congrat.php");
                     }

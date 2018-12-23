@@ -83,7 +83,6 @@
             </div>
         </div>
             
-        <div class="extra-padding-bottom-10px"></div>
         <div class="container">
             <?php
                 $mysqli = new mysqli($hostname, $username, $password, $dbname, $port) or die(mysqli_error($mysqli));
@@ -146,6 +145,12 @@
             </div>
             
         </div>
+
+        <div class="extra-padding-bottom-10px"></div>
+        <div class="extra-padding-bottom-10px"></div>
+        <div class="extra-padding-bottom-10px"></div>
+        <div class="extra-padding-bottom-10px"></div>
+        <div class="extra-padding-bottom-10px"></div>
 
         <script>
             function startDictation() {

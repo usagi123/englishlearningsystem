@@ -85,26 +85,33 @@
                 <div class="container-fluid post-preview left-button">
                     <h1>Introduction</h1>
                     <p>
-                        <!-- This is the introduction page </br>
-                        Blah blah blah </br>
-                        Please giff me HD this course <img src="https://cdn.discordapp.com/emojis/417925609948315658.png?v=1" style="width: 25px; height: auto;">
-                            Student name: Mai Pham Quang Huy -->
-                        Student ID: s3618861 </br>
-                        <a href="https://s3618861-amp.appspot.com/index.php">Deployed link</a> </br>
-                        Credentials: username: admin, password: admin </br>
-                        </br>
-                        - Login (/login.php): to prevent unauthorized users from access data and perform actions </br>
-                        </br>
-                        The application has 5 navlinks: </br>
-                        - Home (/): index.php page, the introduction page, the homepage. If link not found, it will redirect to 404.php </br>
-                        - Listing (/listing.php): use to display all lecturers, use to start create, edit and delete </br>
-                        - Add new (/addnew.php): use the same form to handle both add new and update entity, based on the situation the title and navlink will change </br>
-                        - BigQuery (/bigqueyr.php): using the dataset provided by lecturer and using the current list of lecturers to search and count how many name dataset have for each name </br>
-                        - Logout (/logout.php): logout the session </br>
-                        </br>
-                        What I had done: </br>
-                        - CRUD on Lecturer entity </br>
-                        - Google Big Query </br>
+                        Student ID: s3618861 <br>
+                        Deployed link: https://maiphamquanghuy.com/ <br>
+                        Credentials: <br>
+                            - Admin user: admin - admin <br>
+                            - Normal user: user - user <br>
+                            When register, new user will be listed into normal user <br>
+
+                        - Login (/login.php): to prevent unauthorized users from access data and perform actions <br>
+
+                        For admin account: <br>
+                        - Home - index.php: to prevent unauthorized users from access data and perform actions <br>
+                        - Learning - randomword.php: I allow admin to see this page for admin to tweak their page. This page will display a single word take randomly from database. There will be a place for user to practice their pronounciation. User press record and allow website to use their microphone, then talk. After a bit, user will submit their result by pressing submit button. <br>
+                        - Listing - listing.php: list all words out <br>
+                        - Add new - addnew.php: use the same form to handle both add new and update entity, based on the situation the title and navlink will change <br>
+                        - Logout - logout.php: logout <br>
+
+                        For user account: <br>
+                        - Home - index.php: to prevent unauthorized users from access data and perform actions <br>
+                        - Learning - randomword.php: this page will display a single word take randomly from database. There will be a place for user to practice their pronounciation. User press record and allow website to use their microphone, then talk. After a bit, user will submit their result by pressing submit button. <br>
+                        - Logout - logout.php: logout <br>
+
+                        What I had done: <br>
+                        - Register system with password stored on database was salted 12. <br>
+                        - Login system that can prevent sql injection <br>
+                        - CRUD words <br>
+                        - A voice regconition for users to practice their pronounciation <br>
+                        - SSL <br>
                     </p>
                 </div>
             </div>

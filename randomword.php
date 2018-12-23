@@ -68,6 +68,9 @@
                                     <a class="nav-link" href="randomword.php">Learning</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" href="userlisting.php">All words</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" href="logout.php">Logout</a>
                                 </li>
                             <?php endif; ?>

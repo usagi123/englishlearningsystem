@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    include 'dbconfig.php';
+
     //Token like system
     if(!isset($_SESSION['loginid'])){
         header("Location: login.php");
@@ -41,7 +43,7 @@
                         <ul class="navbar-nav ml-auto">
                             <!-- when admin login -->
                             <?php if($_SESSION['level'] == 1):?>
-                                <li class="nav-item active">
+                                <li class="nav-item">
                                     <a class="nav-link" href="index.php">Home</a>
                                 </li>
                                 <li class="nav-item">
@@ -58,13 +60,13 @@
                                 </li>
                             <!-- when user login -->
                             <?php else: ?>
-                                <li class="nav-item active">
+                                <li class="nav-item">
                                     <a class="nav-link" href="index.php">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="randomword.php">Learning</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item active">
                                     <a class="nav-link" href="userlisting.php">All words</a>
                                 </li>
                                 <li class="nav-item">
@@ -76,60 +78,63 @@
                 </div>
             </nav>
         </div>
-    <div class="container-fluid custom-title">
-      <div class="container">
-        <h1>Homepage</h1>
-      </div>
-    </div>
 
-    <div class="container"> <!--or container-fluid-->
-        <div class="row text-center transition-from-header">
-            <div class="col-md-8 cliente left-title"> 
-                <div class="container-fluid post-preview left-button">
-                    <h1>Introduction</h1>
-                    <p>
-                        Student ID: s3618861 <br>
-                        Deployed link: https://maiphamquanghuy.com/ <br>
-                        Credentials: <br>
-                            - Admin user: admin - admin <br>
-                            - Normal user: user - user <br>
-                            When register, new user will be listed into normal user <br>
-
-                        - Login (/login.php): to prevent unauthorized users from access data and perform actions <br>
-
-                        For admin account: <br>
-                        - Home - index.php: to prevent unauthorized users from access data and perform actions <br>
-                        - Learning - randomword.php: I allow admin to see this page for admin to tweak their page. This page will display a single word take randomly from database. There will be a place for user to practice their pronounciation. User press record and allow website to use their microphone, then talk. After a bit, user will submit their result by pressing submit button. <br>
-                        - Listing - listing.php: list all words out <br>
-                        - Add new - addnew.php: use the same form to handle both add new and update entity, based on the situation the title and navlink will change <br>
-                        - Logout - logout.php: logout <br>
-
-                        For user account: <br>
-                        - Home - index.php: to prevent unauthorized users from access data and perform actions <br>
-                        - Learning - randomword.php: this page will display a single word take randomly from database. There will be a place for user to practice their pronounciation. User press record and allow website to use their microphone, then talk. After a bit, user will submit their result by pressing submit button. <br>
-                        - Logout - logout.php: logout <br>
-
-                        What I had done: <br>
-                        - Register system with password stored on database was salted 12. <br>
-                        - Login system that can prevent sql injection <br>
-                        - CRUD words <br>
-                        - A voice regconition for users to practice their pronounciation <br>
-                        - SSL by adding my ELB to CNAME on CloudFlare. I choose CF as I already added their name servers on my registar. <br>
-                    </p>
-                </div>
-            </div>
-            <div class="col-md-4 cliente right-title"> 
-                <h1>Contact me</h1>
-                <p>
-                   Giff me HD JSC
-                </p>
-                <h3>Phones</h3>
-                <p>0906969696</p>
-                <h3>Email</h3>
-                <p>Ayy.lmao@alohabanana.com</p>
+        <div class="container-fluid custom-title">
+            <div class="container">
+                <h1>Questions list</h1>
             </div>
         </div>
+            
         <div class="extra-padding-bottom-10px"></div>
-    </div>
+        <div class="container">
+            <?php require_once 'process.php'; ?>   
+            <?php if (isset($_SESSION['message'])): ?>
+                <div class="alert alert-<?=$_SESSION['msg_type']?> alert-dismissible fade show">
+                    <?php 
+                        echo $_SESSION['message']; 
+                        unset($_SESSION['message']);
+                    ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php endif ?>
+            <?php
+                $mysqli = new mysqli($hostname, $username, $password, $dbname, $port) or die(mysqli_error($mysqli));
+                $result = $mysqli->query("SELECT * FROM questions") or die($mysqli->error);
+                //pre_r($result);
+            ?>
+            <div class="extra-padding-bottom-10px"></div>
+
+                <div class="row justify-content-center">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Word</th>
+                                <th>Meaning</th>
+                                <th>Similar</th>
+                                <th>Example 1</th>
+                                <th>Example 2</th>
+                            </tr>
+                        </thead>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                        <tr>
+                            <td><?php echo $row['word']; ?></td>
+                            <td><?php echo $row['meaning']; ?></td>
+                            <td><?php echo $row['similar']; ?></td>
+                            <td><?php echo $row['eone']; ?></td>
+                            <td><?php echo $row['etwo']; ?></td>
+                        </tr>
+                    <?php endwhile; ?>    
+                    </table>
+                </div>
+            <?php
+                function pre_r( $array ) {
+                    echo '<pre>';
+                    print_r($array);
+                    echo '</pre>';
+                }
+            ?>
+        </div>
 
 <?php include('includes/footer.php'); ?>    
